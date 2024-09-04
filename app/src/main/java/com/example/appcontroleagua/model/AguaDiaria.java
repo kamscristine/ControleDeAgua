@@ -28,9 +28,8 @@ public class AguaDiaria {
         return (cont * volumeCopo)/1000;
     }
 
-    public List<Copo> getCoposFaltando() {
-        return copos;
-    }
+
+
 
 
 
