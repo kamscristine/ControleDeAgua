@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textoPeso" type="id" />
+    <item name="inserirPeso" type="id" />
+    <item name="btnCalcular" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="bottomLayout" type="id" />
+    <item name="textoBebeu" type="id" />
+    <item name="avisoQtdBebida" type="id" />
+    <item name="textoFaltando" type="id" />
+    <item name="avisoQtdFaltando" type="id" />
+    <item name="btnLimpar" type="id" />
+</resources>

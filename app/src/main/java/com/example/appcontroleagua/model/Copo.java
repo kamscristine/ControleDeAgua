@@ -2,28 +2,27 @@ package com.example.appcontroleagua.model;
 
 public class Copo {
 
-    private float volume;
-    private boolean cheio = true;
+    private boolean cheio;
+    private int volume;
 
-    // construtor
-    public Copo(float volume) {
+    public Copo(int volume) {
         this.volume = volume;
-    }
-
-    public float getVolume() {
-        return volume;
+        this.cheio = false;
     }
 
     public boolean isCheio() {
         return cheio;
     }
 
-    public void beber(){
-        cheio = false;
-    }
-
-    public void desbeber(){
+    public void beber() {
         cheio = true;
     }
 
+    public void desbeber() {
+        cheio = false;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
 }
