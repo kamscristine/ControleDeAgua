@@ -2,7 +2,6 @@ package com.example.appcontroleagua;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnCopoClickListen
         btnLimpar = findViewById(R.id.btnLimpar);
         edtPeso = findViewById(R.id.inserirPeso);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
         btnCalcular.setOnClickListener(v -> {
             String pesoStr = edtPeso.getText().toString();
@@ -51,14 +50,15 @@ public class MainActivity extends AppCompatActivity implements OnCopoClickListen
                 aguaDiariaViewModel = new AguaDiariaViewModel(peso, 150);
                 adapter = new AguaDiariaAdapter(aguaDiariaViewModel.getCopos(), this);
                 recyclerView.setAdapter(adapter);
-                updateUI();
+                atualizaInterface();
             }
         });
 
         btnLimpar.setOnClickListener(v -> {
             edtPeso.setText("");
             txtBebeu.setText("0 L");
-            txtFaltando.setText("0 L");
+            txtFaltando.setText("0 ml");
+            txtCoposFaltando.setText("0 cps ou ");
             recyclerView.setAdapter(null);
             aguaDiariaViewModel = null;
         });
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements OnCopoClickListen
                 edtPeso.setText(String.valueOf(peso));
                 adapter = new AguaDiariaAdapter(aguaDiariaViewModel.getCopos(), this);
                 recyclerView.setAdapter(adapter);
-                updateUI();
+                atualizaInterface();
             }
         }
     }
@@ -78,22 +78,22 @@ public class MainActivity extends AppCompatActivity implements OnCopoClickListen
     @Override
     public void copoClicado(CopoViewModel copoViewModel) {
         // Atualize a UI quando um copo for clicado
-        updateUI();
+        atualizaInterface();
     }
 
-    private void updateUI() {
+    private void atualizaInterface() {
 
         if (aguaDiariaViewModel != null) {
             float litrosBebidos = aguaDiariaViewModel.litrosBebidosAteAgora();
             float litrosFaltando = aguaDiariaViewModel.quantLitrosFaltando();
 
-            txtFaltando.setText(String.format("%.1f L", litrosBebidos));
+            txtFaltando.setText(String.format("%.1f ml", litrosBebidos*1000));
             // Atualize o texto "faltando" para não mostrar valores negativos
             txtBebeu.setText(String.format("%.1f L", Math.max(litrosFaltando, 0)));
 
 
             int coposFaltando = (int) Math.ceil(litrosFaltando / 0.15);
-            txtCoposFaltando.setText(coposFaltando + " cp ou");
+            txtCoposFaltando.setText(coposFaltando + " cps ou");
 
         }
     }

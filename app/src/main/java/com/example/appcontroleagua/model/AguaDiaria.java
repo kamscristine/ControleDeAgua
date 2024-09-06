@@ -27,7 +27,7 @@ public class AguaDiaria {
     }
 
     public float getVolumeTotal() {
-        return peso * 35.0f; // Total volume needed in ml
+        return peso * 35.0f;
     }
 
     public float getQuantidadeBebida() {

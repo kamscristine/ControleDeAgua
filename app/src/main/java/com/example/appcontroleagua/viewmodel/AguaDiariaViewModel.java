@@ -31,7 +31,7 @@ public class AguaDiariaViewModel extends ViewModel  {
                 quantBebida += copo.getVolume();
             }
         }
-        return quantBebida / 1000.0f; // Convert to liters
+        return quantBebida / 1000.0f; // CConverte p litros
     }
 
     public float quantLitrosFaltando() {
